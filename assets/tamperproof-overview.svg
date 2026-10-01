@@ -7,9 +7,8 @@
   <rect width="1200" height="800" fill="url(#bg)"/>
   <circle cx="1020" cy="120" r="350" fill="url(#glow)"/>
   <g font-family="Microsoft JhengHei, Noto Sans TC, sans-serif">
-    <text x="72" y="88" fill="#79d8c3" font-size="18" letter-spacing="5">TAMPERPROOF / TPM</text>
-    <text x="72" y="169" fill="#f0f6f5" font-size="52" font-weight="700">讓每一次檔案異動，都有跡可循。</text>
-    <text x="75" y="221" fill="#abc2cc" font-size="25">檔案比對 · 集中追蹤 · 異動通知</text>
+    <text x="72" y="150" fill="#79d8c3" font-size="36" letter-spacing="5">TAMPERPROOF / TPM</text>
+    <text x="75" y="210" fill="#abc2cc" font-size="25">檔案比對 · 集中追蹤 · 異動通知</text>
     <path d="M320 421H432M762 421H872" stroke="#66c8b6" stroke-width="2" marker-end="url(#arrow)"/>
     <g fill="#193642" stroke="#376170" stroke-width="1.5">
       <rect x="72" y="308" width="254" height="225" rx="20"/>
