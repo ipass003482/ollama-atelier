@@ -4,6 +4,12 @@
 
 這是無需建置的靜態網站。Ollama 使用透明背景的 3D 渲染 PNG，透過視差與介面動畫陪伴旅程。雲島及角色視覺為本專案透過 ImageGen 生成；作品框、場景渲染與點選互動由 Three.js 即時處理。作品集的八筆內容與 Unsplash 照片是可替換的展示素材。
 
+## 公開網站
+
+[開啟 Ollama Atelier 雲端靈感島](https://ipass003482.github.io/ollama-atelier/)
+
+網站透過 GitHub Pages 從 `main` 分支的根目錄發布，`.nojekyll` 讓 HTML、CSS、JavaScript 與圖片直接作為靜態檔案部署。之後將更新推送到 `main`，GitHub 便會自動重新發布；部署進度可在儲存庫的 Actions 頁面查看。
+
 ## 本機開啟
 
 安裝 Node.js 18 或更新版本，在專案資料夾執行：
@@ -57,7 +63,7 @@ npm test
 
 ## 部署到 Vercel
 
-本專案可直接作為靜態網站部署，不需要執行 `server.mjs`。以下提供自行部署的步驟，目前沒有代為發布。
+本專案也可直接部署到 Vercel，不需要執行 `server.mjs`。以下提供自行部署的步驟，目前未部署到 Vercel。
 
 ### 透過網頁介面
 
