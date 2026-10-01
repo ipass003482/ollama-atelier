@@ -19,7 +19,7 @@ for (const [index, work] of works.entries()) {
   const button = document.createElement('button');
   button.className = 'work-row'; button.dataset.work = index;
   button.setAttribute('aria-label', `查看作品 ${work.id}：${work.title}`);
-  button.innerHTML = `<span class="row-image"><img loading="lazy" decoding="async" src="${work.imageUrl}" alt="${work.title}" style="background:${work.color}"></span><span class="row-copy"><span class="row-number">${work.id} / ${work.year}</span><span class="row-title">${work.title}</span><span class="row-subtitle">${work.subtitle}</span><span class="row-category">${work.category}</span></span><span class="row-arrow" aria-hidden="true">↗</span>`;
+  button.innerHTML = `<span class="row-image"><img loading="lazy" decoding="async" src="${work.imageUrl}" alt="${work.title}" style="background:${work.color};object-fit:${work.imageFit || 'cover'}"></span><span class="row-copy"><span class="row-number">${work.id} / ${work.year}</span><span class="row-title">${work.title}</span><span class="row-subtitle">${work.subtitle}</span><span class="row-category">${work.category}</span></span><span class="row-arrow" aria-hidden="true">↗</span>`;
   button.addEventListener('click', () => openWork(index)); $('work-list').append(button);
 }
 function lockScroll() {
@@ -43,6 +43,33 @@ function openWork(index, tile) {
   const work = works[index]; dialogOpener = document.activeElement;
   for (const [id, value] of Object.entries({ 'work-title': work.title, 'work-subtitle': work.subtitle, 'work-category': work.category, 'work-description': work.description, 'work-year': work.year, 'work-number': `${work.id} / 08` })) $(id).textContent = value;
   $('work-image').src = work.imageUrl; $('work-image').alt = `${work.title} — ${work.subtitle}`; $('work-image').style.background = work.color;
+  $('work-image').style.objectFit = work.imageFit || 'cover';
+  dialog.querySelector('.image-credit').textContent = work.imageCredit || 'UNSPLASH · PLACEHOLDER COLLECTION';
+  const imageWrap = dialog.querySelector('.work-image-wrap');
+  imageWrap.querySelector('.work-image-stack')?.remove();
+  const hasMultipleImages = work.images?.length > 1;
+  imageWrap.classList.toggle('has-multiple-images', !!hasMultipleImages);
+  if (hasMultipleImages) {
+    const stack = document.createElement('div'); stack.className = 'work-image-stack';
+    for (const item of work.images) {
+      const figure = document.createElement('figure');
+      const img = document.createElement('img'); img.src = item.src; img.alt = item.alt; img.decoding = 'async';
+      const caption = document.createElement('figcaption'); caption.textContent = item.caption;
+      figure.append(img, caption); stack.append(figure);
+    }
+    imageWrap.append(stack);
+  }
+  dialog.scrollTop = 0;
+  dialog.querySelector('.work-links')?.remove();
+  if (work.websiteUrl || work.repositoryUrl) {
+    const links = document.createElement('nav'); links.className = 'work-links'; links.setAttribute('aria-label', '作品相關連結');
+    for (const [url, label] of [[work.websiteUrl, '開啟網站 ↗'], [work.repositoryUrl, 'GitHub 原始碼 ↗']]) {
+      if (!url) continue;
+      const link = document.createElement('a'); link.href = url; link.textContent = label; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      links.append(link);
+    }
+    $('work-description').after(links);
+  }
   if (tile && engine) { pendingFocus = true; lockScroll(); engine.focus(tile, showWork); } else showWork();
 }
 function closeWork() { if (dialog.open) dialog.close(); }
@@ -160,7 +187,7 @@ async function init() {
   function artTexture(work, image) {
     const canvas = document.createElement('canvas'); canvas.width = 960; canvas.height = 660; const ctx = canvas.getContext('2d');
     ctx.fillStyle = work.color; ctx.fillRect(0, 0, 960, 660);
-    if (image) { const r = Math.max(960 / image.width, 660 / image.height); ctx.drawImage(image, (960 - image.width * r) / 2, (660 - image.height * r) / 2, image.width * r, image.height * r); }
+    if (image) { const r = (work.imageFit === 'contain' ? Math.min : Math.max)(960 / image.width, 660 / image.height); ctx.drawImage(image, (960 - image.width * r) / 2, (660 - image.height * r) / 2, image.width * r, image.height * r); }
     else {
       const g = ctx.createLinearGradient(0, 0, 960, 660); g.addColorStop(0, '#c6d2d780'); g.addColorStop(1, '#101626c0'); ctx.fillStyle = g; ctx.fillRect(0, 0, 960, 660);
       ctx.strokeStyle = '#ffffff55'; ctx.lineWidth = 2;

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const titles = ['沙丘之間', '光的容器', '無聲的潮汐', '山的另一邊', '住進留白', '綠色頻率', '城市的切片', '日落以後'];
+const titles = ['Web讀寫卡系統', 'LineBot', 'BinanceTrade', 'RagLearning問答機器人', '高雄菜價快查', 'openAlice', '城市的切片', 'Azure DevOps 平台運用'];
 
 async function openJourney(page, { requireCanvas = true } = {}) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
@@ -92,7 +92,7 @@ test('the complete HTML collection opens the last work and restores the invoking
   const scrollPosition = await page.evaluate(() => scrollY);
   await row.click();
   await expect(page.locator('#work-dialog')).toBeVisible();
-  await expect(page.locator('#work-title')).toHaveText('日落以後');
+  await expect(page.locator('#work-title')).toHaveText('Azure DevOps 平台運用');
   await expect(page.locator('#work-number')).toHaveText('08 / 08');
   await expect(page.locator('dialog[open]')).toHaveCount(1);
   await page.screenshot({ path: testInfo.outputPath('collection-work.png') });
@@ -187,7 +187,7 @@ test.describe('mobile touch', () => {
     await page.screenshot({ path: testInfo.outputPath('mobile-free-gallery.png') });
     await page.touchscreen.tap(center.x, center.y);
     await expect(page.locator('#work-dialog')).toBeVisible();
-    await expect(page.locator('#work-title')).toHaveText('沙丘之間');
+    await expect(page.locator('#work-title')).toHaveText('Web讀寫卡系統');
     await expect(page.locator('#close-work')).toBeInViewport();
     await page.screenshot({ path: testInfo.outputPath('mobile-work.png') });
     await page.locator('#close-work').tap();
@@ -210,12 +210,12 @@ test.describe('reduced motion', () => {
     const row = page.locator('#work-list .work-row').nth(3);
     await row.click();
     await expect(page.locator('#work-dialog')).toBeVisible();
-    await expect(page.locator('#work-title')).toHaveText('山的另一邊');
+    await expect(page.locator('#work-title')).toHaveText('RagLearning問答機器人');
     await page.keyboard.press('Escape');
     await expect(page.locator('#work-dialog')).toBeHidden();
     await expect(row).toBeFocused();
     await page.locator('#work-list .work-row').first().click();
-    await expect(page.locator('#work-title')).toHaveText('沙丘之間');
+    await expect(page.locator('#work-title')).toHaveText('Web讀寫卡系統');
   });
 });
 
@@ -234,7 +234,7 @@ test('without WebGL, the complete HTML collection and details remain accessible'
   const row = page.locator('#work-list .work-row').last();
   await row.click();
   await expect(page.locator('#work-dialog')).toBeVisible();
-  await expect(page.locator('#work-title')).toHaveText('日落以後');
+  await expect(page.locator('#work-title')).toHaveText('Azure DevOps 平台運用');
   await page.screenshot({ path: testInfo.outputPath('fallback-work.png') });
   await page.keyboard.press('Escape');
   await expect(page.locator('#work-dialog')).toBeHidden();
