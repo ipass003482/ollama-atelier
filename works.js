@@ -98,7 +98,7 @@ export const works = [
     category: 'BLAZOR / 檔案完整性監控',
     year: '—',
     description: '系統上線之後，如何知道程式檔案是否被改動？Tamperproof（TPM）以可信任的基準目錄作為比對依據，讓散落在主機上的檔案變化，成為可集中查閱的監控事件。\n\nWindows Agent 比對執行目錄與基準目錄中的檔案內容，辨識新增、修改與刪除，並透過 API 回報掃描結果。後台以 Blazor Server 與 MudBlazor 建立操作介面，提供主機狀態、最近異動與掃描紀錄查詢。\n\n當監控項目啟用即時通知且發現異動時，伺服器可透過 webhook 發送提醒；通知失敗也會保留已接收的掃描結果。搭配 AD 登入與權限管理，將檔案比對、集中追蹤與異動通知串成完整的監控流程。',
-    imageUrl: './assets/tamperproof-overview.svg',
+    imageUrl: './assets/tamperproof-overview.svg?v=2',
     imageCredit: 'TPM 功能流程示意 · 非實際操作截圖',
     imageFit: 'contain',
     repositoryUrl: 'https://github.com/ipass003482/Tamperproof',

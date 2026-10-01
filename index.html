@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css?v=20261001-2" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
@@ -53,7 +53,9 @@
     <dialog id="work-dialog" class="glass-dialog work-dialog backdrop-blur-2xl" aria-labelledby="work-title"><button class="dialog-close" id="close-work" aria-label="關閉作品">×</button><div class="work-image-wrap"><img id="work-image" alt="" /><span class="image-credit">UNSPLASH · PLACEHOLDER COLLECTION</span></div><div class="work-detail"><p class="eyebrow" id="work-category"></p><h2 id="work-title"></h2><p class="work-en-title" id="work-subtitle"></p><p id="work-description"></p><dl class="work-meta"><div><dt>YEAR</dt><dd id="work-year"></dd></div><div><dt>EXHIBIT</dt><dd id="work-number"></dd></div></dl><button id="return-gallery" class="text-button">繼續逛逛 <span aria-hidden="true">↗</span></button></div></dialog>
     <noscript><div class="noscript-notice">請啟用 JavaScript 以欣賞互動作品，或繼續閱讀下方的展廳介紹。</div></noscript>
     <script type="module">
-      import('./main.js').catch((error) => {
+      // Refresh local modules together so cached portfolio records cannot outlive a deployment.
+      const assetVersion = Date.now().toString(36);
+      import(`./main.js?v=${assetVersion}`).catch((error) => {
         console.error('Gallery startup failed:', error);
         document.getElementById('loading').hidden = true;
         document.getElementById('fallback').hidden = false;

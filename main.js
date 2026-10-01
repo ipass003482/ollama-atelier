@@ -1,4 +1,5 @@
-import { works } from './works.js';
+// Keep portfolio data on the same fresh module URL as the entry script.
+const { works } = await import(`./works.js${new URL(import.meta.url).search}`);
 
 const $ = (id) => document.getElementById(id);
 const workCountLabel = String(works.length).padStart(2, '0');
