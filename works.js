@@ -1,4 +1,4 @@
-// Replace these eight records with your own portfolio. Use direct image URLs,
+// Edit these records to update your portfolio. Use direct image URLs,
 // not Unsplash page URLs: WebGL textures need an image response with CORS support.
 export const works = [
   {
@@ -79,9 +79,8 @@ export const works = [
     imageFit: 'contain',
     color: '#343c44'
   },
-  { id: '07', title: '城市的切片', subtitle: 'Fragments of a City', category: 'URBAN / 城市印象', year: '2024', description: '街道的交會，也是故事的交會。\n\n從城市的節奏中截取片段，收集線條、色彩與短暫的停頓。熟悉的風景，換一個角度就能重新發現。', imageUrl: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85', color: '#677786' },
   {
-    id: '08',
+    id: '07',
     title: 'Azure DevOps 平台運用',
     subtitle: 'Version Control, CI/CD & Security Scanning',
     category: '平台運用 / 建置與部署管理',

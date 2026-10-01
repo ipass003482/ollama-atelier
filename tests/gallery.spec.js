@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-const titles = ['Web讀寫卡系統', 'LineBot', 'BinanceTrade', 'RagLearning問答機器人', '高雄菜價快查', 'openAlice', '城市的切片', 'Azure DevOps 平台運用'];
+const titles = ['Web讀寫卡系統', 'LineBot', 'BinanceTrade', 'RagLearning問答機器人', '高雄菜價快查', 'openAlice', 'Azure DevOps 平台運用'];
 
 async function openJourney(page, { requireCanvas = true } = {}) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#loading')).toBeHidden({ timeout: 30_000 });
   await expect(page.locator('#fallback')).toBeHidden();
   if (requireCanvas) await expect(page.locator('#render-surface canvas')).toBeVisible();
-  await expect(page.locator('#work-list .work-row')).toHaveCount(8);
+  await expect(page.locator('#work-list .work-row')).toHaveCount(titles.length);
 }
 
 async function enterFeatured(page) {
@@ -63,14 +63,14 @@ test('the scroll journey reaches the selected work, whose details return to the 
   await enterFeatured(page);
   const first = Number.parseInt(await page.locator('#featured-count').textContent(), 10);
   await page.locator('#next-work').click();
-  const next = first % 8 + 1;
-  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${next}\\s*/\\s*08`));
+  const next = first % titles.length + 1;
+  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${next}\\s*/\\s*07`));
   await settleScroll(page);
   await page.locator('#prev-work').click();
-  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${first}\\s*/\\s*08`));
+  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${first}\\s*/\\s*07`));
   await settleScroll(page);
   await page.locator('#next-work').click();
-  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${next}\\s*/\\s*08`));
+  await expect(page.locator('#featured-count')).toHaveText(new RegExp(`0${next}\\s*/\\s*07`));
   await settleScroll(page);
   await page.screenshot({ path: testInfo.outputPath('cinematic-featured.png') });
   const scrollPosition = await page.evaluate(() => scrollY);
@@ -93,7 +93,7 @@ test('the complete HTML collection opens the last work and restores the invoking
   await row.click();
   await expect(page.locator('#work-dialog')).toBeVisible();
   await expect(page.locator('#work-title')).toHaveText('Azure DevOps 平台運用');
-  await expect(page.locator('#work-number')).toHaveText('08 / 08');
+  await expect(page.locator('#work-number')).toHaveText('07 / 07');
   await expect(page.locator('dialog[open]')).toHaveCount(1);
   await page.screenshot({ path: testInfo.outputPath('collection-work.png') });
   await page.locator('#close-work').click();
@@ -230,7 +230,7 @@ test('without WebGL, the complete HTML collection and details remain accessible'
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#loading')).toBeHidden({ timeout: 30_000 });
   await expect(page.locator('#fallback')).toBeVisible();
-  await expect(page.locator('#work-list .work-row')).toHaveCount(8);
+  await expect(page.locator('#work-list .work-row')).toHaveCount(titles.length);
   const row = page.locator('#work-list .work-row').last();
   await row.click();
   await expect(page.locator('#work-dialog')).toBeVisible();

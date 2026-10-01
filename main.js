@@ -1,6 +1,8 @@
 import { works } from './works.js';
 
 const $ = (id) => document.getElementById(id);
+const workCountLabel = String(works.length).padStart(2, '0');
+const lastWorkIndex = works.length - 1;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const mix = (a, b, p) => a + (b - a) * p;
 const smooth = (a, b, v) => { const p = clamp((v - a) / (b - a), 0, 1); return p * p * (3 - 2 * p); };
@@ -15,6 +17,8 @@ const gsap = window.gsap;
 const announce = (message) => { $('announcement').textContent = message; };
 
 // Initialize the accessible collection before loading the 3D engine.
+$('collection-link').querySelector('span').textContent = workCountLabel;
+document.querySelector('.section-count').textContent = `${workCountLabel} WORKS`;
 for (const [index, work] of works.entries()) {
   const button = document.createElement('button');
   button.className = 'work-row'; button.dataset.work = index;
@@ -41,7 +45,7 @@ function showWork() {
 function openWork(index, tile) {
   if (dialog.open || pendingFocus) return;
   const work = works[index]; dialogOpener = document.activeElement;
-  for (const [id, value] of Object.entries({ 'work-title': work.title, 'work-subtitle': work.subtitle, 'work-category': work.category, 'work-description': work.description, 'work-year': work.year, 'work-number': `${work.id} / 08` })) $(id).textContent = value;
+  for (const [id, value] of Object.entries({ 'work-title': work.title, 'work-subtitle': work.subtitle, 'work-category': work.category, 'work-description': work.description, 'work-year': work.year, 'work-number': `${work.id} / ${workCountLabel}` })) $(id).textContent = value;
   $('work-image').src = work.imageUrl; $('work-image').alt = `${work.title} — ${work.subtitle}`; $('work-image').style.background = work.color;
   $('work-image').style.objectFit = work.imageFit || 'cover';
   dialog.querySelector('.image-credit').textContent = work.imageCredit || 'UNSPLASH · PLACEHOLDER COLLECTION';
@@ -81,14 +85,14 @@ dialog.addEventListener('click', (event) => {
 dialog.addEventListener('close', () => { unlockScroll(); engine?.unfocus(); dialogOpener?.focus({ preventScroll: true }); });
 function setFeaturedIndex(index) {
   featuredIndex = clamp(index, 0, works.length - 1);
-  $('featured-count').textContent = `${String(featuredIndex + 1).padStart(2, '0')} / 08`;
+  $('featured-count').textContent = `${String(featuredIndex + 1).padStart(2, '0')} / ${workCountLabel}`;
   $('open-featured').setAttribute('aria-label', `查看作品：${works[featuredIndex].title}`);
   $('prev-work').disabled = featuredIndex === 0; $('next-work').disabled = featuredIndex === works.length - 1;
   $('gallery-area').setAttribute('aria-label', `精選作品：${works[featuredIndex].title}。左右方向鍵切換，Enter 查看。`);
 }
 function goToWork(index) {
   if (reducedMotion || !engine) { $('collection').scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth' }); return; }
-  const p = .58 + clamp(index, 0, 7) / 7 * .39, journey = $('journey');
+  const p = .58 + clamp(index, 0, lastWorkIndex) / Math.max(1, lastWorkIndex) * .39, journey = $('journey');
   window.scrollTo({ top: journey.getBoundingClientRect().top + scrollY + p * (journey.offsetHeight - innerHeight), behavior: reducedMotion ? 'instant' : 'smooth' });
 }
 $('enter-gallery').addEventListener('click', () => goToWork(0));
@@ -151,7 +155,7 @@ function updateJourney() {
   $('progress-fill').style.transform = `scaleX(${progress})`;
   $('chapter-label').textContent = progress < .38 ? '01 — 出發 / DEPARTURE' : '02 — 靈感窗口 / DISCOVER';
   $('scroll-cue').style.opacity = 1 - smooth(.02, .12, progress);
-  if (!freeMode && !dialog.open && !pendingFocus) setFeaturedIndex(Math.round(clamp((progress - .58) / .39, 0, 1) * 7));
+  if (!freeMode && !dialog.open && !pendingFocus) setFeaturedIndex(Math.round(clamp((progress - .58) / .39, 0, 1) * lastWorkIndex));
 }
 let scrollQueued = false;
 window.addEventListener('scroll', () => { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(() => { updateJourney(); scrollQueued = false; }); } }, { passive: true });
@@ -231,7 +235,7 @@ async function init() {
   }
   function featuredDistance() { return Math.max(12.4, 5.3 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect)); }
   function positionFeatured(dt) {
-    const scrollIndex = clamp((progress - .58) / .39, 0, 1) * 7, damp = reducedMotion ? 1 : 1 - Math.exp(-9 * dt);
+    const scrollIndex = clamp((progress - .58) / .39, 0, 1) * lastWorkIndex, damp = reducedMotion ? 1 : 1 - Math.exp(-9 * dt);
     for (const [i, tile] of featured.entries()) {
       // Each floating window follows an original diagonal path through depth.
       const d = i - scrollIndex;
