@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#102936"/><stop offset="1" stop-color="#0a1723"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#5bcdb0" stop-opacity=".16"/><stop offset="1" stop-color="#5bcdb0" stop-opacity="0"/></radialGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#66c8b6" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="1020" cy="120" r="350" fill="url(#glow)"/>
+  <g font-family="Microsoft JhengHei, Noto Sans TC, sans-serif">
+    <text x="72" y="88" fill="#79d8c3" font-size="18" letter-spacing="5">TAMPERPROOF / TPM</text>
+    <text x="72" y="169" fill="#f0f6f5" font-size="52" font-weight="700">讓每一次檔案異動，都有跡可循。</text>
+    <text x="75" y="221" fill="#abc2cc" font-size="25">檔案比對 · 集中追蹤 · 異動通知</text>
+    <path d="M320 421H432M762 421H872" stroke="#66c8b6" stroke-width="2" marker-end="url(#arrow)"/>
+    <g fill="#193642" stroke="#376170" stroke-width="1.5">
+      <rect x="72" y="308" width="254" height="225" rx="20"/>
+      <rect x="446" y="308" width="306" height="225" rx="20"/>
+      <rect x="886" y="308" width="242" height="225" rx="20"/>
+    </g>
+    <g fill="#7bddc7" font-size="19" letter-spacing="2"><text x="100" y="351">01 / AGENT</text><text x="476" y="351">02 / SERVER</text><text x="916" y="351">03 / ALERT</text></g>
+    <g fill="#f0f6f5" font-size="32" font-weight="700"><text x="100" y="411">基準比對</text><text x="476" y="411">集中紀錄</text><text x="916" y="411">異動通知</text></g>
+    <g fill="#b2c9d2" font-size="21">
+      <text x="100" y="457">Windows Agent</text><text x="100" y="490">執行目錄 × 基準目錄</text>
+      <text x="476" y="457">Blazor 管理後台</text><text x="476" y="490">主機狀態與掃描結果</text>
+      <text x="916" y="457">Webhook 提醒</text><text x="916" y="490">依監控設定發送</text>
+    </g>
+    <g font-size="22" text-anchor="middle">
+      <rect x="72" y="591" width="148" height="48" rx="24" fill="#174b43"/><text x="146" y="623" fill="#8aebc3">新增 NEW</text>
+      <rect x="238" y="591" width="210" height="48" rx="24" fill="#443d2d"/><text x="343" y="623" fill="#edcf8d">修改 MODIFIED</text>
+      <rect x="466" y="591" width="200" height="48" rx="24" fill="#422f3d"/><text x="566" y="623" fill="#f0adbd">刪除 DELETED</text>
+    </g>
+    <path d="M72 686H1128" stroke="#2e4b59"/>
+    <text x="72" y="733" fill="#a8bec8" font-size="21">AD 登入與權限管理</text>
+    <text x="1128" y="733" text-anchor="end" fill="#819aa7" font-size="18">功能流程示意 · 非實際操作截圖</text>
+  </g>
+</svg>
