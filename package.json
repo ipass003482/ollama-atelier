@@ -1,0 +1,19 @@
+{
+  "name": "ollama-infinite-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An original cinematic portfolio journey through a cloud island with an Ollama guide",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "check": "node --check main.js && node --check works.js && node --check server.mjs",
+    "test": "playwright test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

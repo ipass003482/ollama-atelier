@@ -1,0 +1,11 @@
+node_modules/
+.npm-cache/
+test-results/
+playwright-report/
+archive/
+test-assets/
+tests/
+playwright.config.js
+server.mjs
+README.md
+ollama.js

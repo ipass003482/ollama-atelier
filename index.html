@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101626" />
+    <meta name="description" content="跟著胖胖的 Ollama，走進漂浮於夜空的靈感島。探索影像、空間，以及還沒有邊界的想像。" />
+    <title>Ollama Atelier — 雲端靈感島</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%23101626'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='12' transform='rotate(-35 32 32)' fill='none' stroke='%23bce6f4' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23f6f3ea'/%3E%3Ccircle cx='52' cy='20' r='3' fill='%23bce6f4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+    <script type="importmap">
+      { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#collection">跳至作品集</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Ollama Atelier 首頁"><span class="brand-orbit" aria-hidden="true"><i></i></span><span class="brand-name">Ollama <small>ATELIER</small></span></a>
+      <nav aria-label="主選單"><a id="collection-link" href="#collection">作品集<span>08</span></a><a id="about-link" href="#about">關於</a><button id="free-mode">自由探索 <span aria-hidden="true">↗</span></button><button id="motion-toggle" class="motion-toggle" aria-pressed="false" aria-label="暫停場景動態" title="暫停場景動態"><span aria-hidden="true">Ⅱ</span></button></nav>
+    </header>
+    <main id="top">
+      <section id="journey" aria-label="Ollama 雲端靈感島">
+        <div id="stage">
+          <img id="museum-backdrop" class="scene-backdrop" src="./assets/cloud-islands.png" alt="" fetchpriority="high" aria-hidden="true" />
+          <div id="scene-veil" aria-hidden="true"></div><div class="scene-orbit orbit-one" aria-hidden="true"></div><div class="scene-orbit orbit-two" aria-hidden="true"></div><div class="scene-coordinate" aria-hidden="true">25° N &nbsp; / &nbsp; A PLACE FOR WONDER</div>
+          <div id="render-surface" aria-hidden="true"></div>
+          <div id="hero-copy">
+            <p class="eyebrow"><span class="small-star" aria-hidden="true">✳</span> A SMALL ISLAND. AN OPEN MIND.</p>
+            <h1>把想像，<br />放進另一個<span class="dimension-word">維度。</span></h1>
+            <p class="hero-lead">離日常遠一點，離靈感近一點。<br />和 Ollama 一起，在創作之間散個步。</p>
+            <div class="hero-actions"><button id="enter-gallery" class="primary-link">跟著 Ollama 出發 <span aria-hidden="true">↗</span></button><a class="quiet-link" href="#collection">或，直接看看作品 <span aria-hidden="true">↓</span></a></div>
+          </div>
+          <div id="hero-guide" aria-label="你的胖胖 Ollama 3D 導覽員"><img id="hero-ollama" src="./assets/ollama-cinematic.png" alt="胖胖的白色 Ollama，豎著長耳朵，站在漂浮的靈感島上。" fetchpriority="high" draggable="false" /><span class="guide-note"><i aria-hidden="true"></i> YOUR CURIOUS COMPANION</span></div>
+          <section id="featured-view" aria-hidden="true" aria-labelledby="featured-title">
+            <div id="featured-heading"><p class="eyebrow">A FEW THINGS WE IMAGINED</p><h2 id="featured-title">下一個想像，<br />正在發生。</h2></div>
+            <div id="gallery-area" tabindex="0" aria-label="精選 3D 作品。點擊作品查看內容，使用左右方向鍵切換作品。"></div>
+            <div id="featured-controls"><div class="featured-pagination"><button id="prev-work" class="circle-button" aria-label="上一件作品">←</button><output id="featured-count" aria-live="polite" aria-label="目前作品">01 <span>/ 08</span></output><button id="next-work" class="circle-button" aria-label="下一件作品">→</button></div><button id="open-featured" class="primary-link">查看這件作品 <span aria-hidden="true">↗</span></button><a class="quiet-link" href="#collection">全部作品 <span aria-hidden="true">↓</span></a></div>
+          </section>
+          <div class="journey-bottom"><span id="chapter-label">01 — 靈感島，抵達。</span><span id="scroll-cue">SCROLL TO WANDER <span aria-hidden="true">↓</span></span><div class="progress-track" aria-label="展覽瀏覽進度"><span id="progress-fill"></span></div></div>
+        </div>
+      </section>
+      <section id="collection" class="collection-section" aria-labelledby="collection-title"><div class="collection-intro"><p class="eyebrow">THE COLLECTION <span class="section-count">08 WORKS</span></p><h2 id="collection-title">一些作品，<br />一些新的可能<span class="punctuation">。</span></h2><p>光、形狀、空間與想像。<br />每一次嘗試，都是一座新的小島。</p></div><div id="work-list" class="work-list"></div></section>
+      <section id="about" class="about-section" aria-labelledby="about-title"><div class="about-portrait" aria-hidden="true"><span class="about-orbit"></span><img src="./assets/ollama-cinematic.png" alt="" loading="lazy" /></div><div class="about-copy"><p class="eyebrow">A NOTE FROM THIS LITTLE ISLAND</p><h2 id="about-title">讓好奇心，<br />帶你多走一步。</h2><p>你好，這裡是 Ollama Atelier。<br />一個收藏靈感、試著把想像變成立體的地方。</p><p>不必急著找到終點。讓胖胖的 Ollama 陪你，<br class="desktop-break" />在光影和作品之間，發現一點意料之外。</p><small class="demo-note">這是一個互動作品集示範。作品名稱與故事為虛構創作，攝影使用 Unsplash 預留圖片。</small></div></section>
+      <footer class="site-footer"><a class="footer-brand" href="#top">Ollama <span>ATELIER</span></a><p>A LITTLE CURIOSITY GOES A LONG WAY.</p><a class="back-top" href="#top">回到起點 <span aria-hidden="true">↑</span></a><small>© 2026 · A creative playground</small></footer>
+    </main>
+    <section id="free-panel" hidden aria-label="自由探索畫廊"><div id="free-gallery-area" tabindex="0" aria-label="自由探索 3D 畫廊。按住拖曳移動畫布，滾輪或雙指縮放；方向鍵移動，加減鍵縮放，Home 回到起點，Escape 離開。"></div><div class="free-header"><div><p class="eyebrow">NO MAP. JUST CURIOSITY.</p><h2>自由探索</h2></div><button id="exit-free" class="exit-free">返回靈感島 <span aria-hidden="true">×</span></button></div><p class="free-help">按住拖曳，跟著直覺走。<span>滾輪 / 雙指縮放 · 點擊作品查看</span></p><div class="gallery-toolbar" aria-label="畫廊控制"><button id="zoom-out" class="icon-button" aria-label="縮小" title="縮小 (−)">−</button><output id="zoom-level" aria-label="目前縮放比例">100%</output><button id="zoom-in" class="icon-button" aria-label="放大" title="放大 (+)">+</button><span class="toolbar-divider"></span><button id="reset-view" class="icon-button" aria-label="回到起點" title="回到起點 (Home)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3V8M16 3H21V8M21 16V21H16M8 21H3V16M9 12H15M12 9V15" /></svg></button></div></section>
+    <div id="hover-label" aria-hidden="true">靠近看看 <span>↗</span></div><div id="loading" role="status"><span class="loading-orbit" aria-hidden="true"></span><span>讓想像，慢慢成形…</span></div><div id="fallback" hidden><p class="eyebrow">ANOTHER WAY TO WANDER</p><h2>作品，依然在這裡。</h2><p id="fallback-message">此裝置暫時無法開啟 3D 場景，往下探索完整作品集。</p><a class="primary-link" href="#collection">看看作品 <span aria-hidden="true">↓</span></a></div><p id="announcement" class="sr-only" aria-live="polite"></p>
+    <dialog id="work-dialog" class="glass-dialog work-dialog backdrop-blur-2xl" aria-labelledby="work-title"><button class="dialog-close" id="close-work" aria-label="關閉作品">×</button><div class="work-image-wrap"><img id="work-image" alt="" /><span class="image-credit">UNSPLASH · PLACEHOLDER COLLECTION</span></div><div class="work-detail"><p class="eyebrow" id="work-category"></p><h2 id="work-title"></h2><p class="work-en-title" id="work-subtitle"></p><p id="work-description"></p><dl class="work-meta"><div><dt>YEAR</dt><dd id="work-year"></dd></div><div><dt>EXHIBIT</dt><dd id="work-number"></dd></div></dl><button id="return-gallery" class="text-button">繼續逛逛 <span aria-hidden="true">↗</span></button></div></dialog>
+    <noscript><div class="noscript-notice">請啟用 JavaScript 以欣賞互動作品，或繼續閱讀下方的展廳介紹。</div></noscript>
+    <script type="module">
+      import('./main.js').catch((error) => {
+        console.error('Gallery startup failed:', error);
+        document.getElementById('loading').hidden = true;
+        document.getElementById('fallback').hidden = false;
+        document.getElementById('fallback-message').textContent = '互動場景尚未載入完成，請確認網路連線後重新整理。';
+      });
+    </script>
+  </body>
+</html>
