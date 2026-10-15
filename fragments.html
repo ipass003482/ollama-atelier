@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111622">
+  <meta name="description" content="Ollama 與作品碎片。點擊碎片查看作品介紹。">
+  <title>Fragments — Ollama Atelier</title>
+  <link rel="stylesheet" href="./fragments.css">
+</head>
+<body>
+  <main class="atelier">
+    <div class="ambient" aria-hidden="true"></div>
+    <header><a class="brand" href="./index.html"><span class="brand-mark">✳</span> ollama <span class="brand-light">/ atelier</span></a><span class="edition">EXPERIMENT NO. 02</span><a class="back" href="./index.html">回到作品集 <span>↗</span></a></header>
+    <section class="intro"><p class="eyebrow"><span class="live-dot"></span> PORTFOLIO</p><h1>作品碎片</h1><p class="description">點擊碎片，查看作品介紹。</p></section>
+    <div class="back-word" aria-hidden="true">fragments</div>
+    <canvas id="fragments" aria-label="作品截圖碎片從 Ollama 兩側緩緩落下；也可從下方作品列開啟介紹。"></canvas>
+    <div class="orbit" aria-hidden="true"></div><div class="floor" aria-hidden="true"></div>
+    <div class="companion"><div class="shadow"></div><img src="./assets/ollama-cinematic.png" alt="一隻圓胖的白色 Ollama，站在掉落的創作碎片之間。" draggable="false"><span class="companion-label">OLLAMA</span></div>
+
+    <div class="tools" aria-label="場景控制"><button id="burst" class="burst">✳ <span>增加碎片</span></button><button id="pause" aria-pressed="false" aria-label="暫停掉落">Ⅱ</button><button id="reset" aria-label="重新開始" title="重新開始">↺</button></div>
+    <section class="collection" aria-label="選擇作品"><div class="collection-label"><span>THE LITTLE PIECES</span><span id="work-total">08 WORKS</span></div><div id="work-dock"></div></section>
+    <footer><span>© 2026 OLLAMA ATELIER</span><span class="hint">點擊碎片查看作品 <span>↗</span></span><span id="motion-status">● &nbsp; IN MOTION</span></footer>
+  </main>
+  <dialog id="work-dialog" aria-labelledby="detail-title"><button id="close-dialog" aria-label="關閉作品介紹">×</button><img id="detail-image" alt=""><div class="detail-copy"><p id="detail-category" class="eyebrow"></p><h2 id="detail-title"></h2><p id="detail-subtitle"></p><p id="detail-description"></p><div id="detail-links"></div></div></dialog>
+  <script type="module" src="./fragments.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
-    "check": "node --check main.js && node --check works.js && node --check server.mjs",
+    "check": "node --check main.js && node --check works.js && node --check fragments.js && node --check server.mjs",
     "test": "playwright test"
   },
   "engines": {

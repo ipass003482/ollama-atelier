@@ -306,7 +306,7 @@ svg { display: block; }
 }
 @media (max-width: 450px) {
   .site-header { padding: 23px 6%; }
-  .site-header nav { gap: 16px; }
+  .site-header nav { gap: 10px; }
   .site-header nav > a > span { display: none; }
   .site-header nav > button > span { margin-left: 3px; }
   .brand { gap: 7px; }

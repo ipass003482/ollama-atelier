@@ -12,6 +12,14 @@
 
 ## 本機開啟
 
+### 獨立碎片頁面
+
+啟動伺服器後，開啟 <http://127.0.0.1:4173/fragments.html>。中央一隻 Ollama，兩側持續落下由八件作品截圖裁切而成的碎片。滑鼠靠近會推開碎片，點擊碎片或底部作品列可開啟介紹；右上方提供追加碎片、暫停與重新開始。減少動態效果模式預設暫停，可自行啟動。
+
+頁面檔案為 `fragments.html`、`fragments.css`、`fragments.js`，沿用 `works.js` 與本機素材，以 Canvas 2D 繪製碎片、CSS 呈現角色呼吸動畫。此版本是視覺互動原型，沒有使用 WebGPU 或剛體物理，碎片會在下方淡出，不會堆積。原本首頁仍可獨立使用。
+
+執行 `npx playwright test tests/fragments.spec.js` 可檢查桌面、手機、暫停、追加碎片及全部作品介紹。
+
 安裝 Node.js 18 或更新版本，在專案資料夾執行：
 
 ```powershell
